@@ -1,0 +1,32 @@
+{
+  "title": "AI Procurement & Billing Suite — Enquiry to Invoice",
+  "theme": "dark",
+  "nodes": [
+    {"id": "channels", "label": "Customer\nWhatsApp·Email·Manual", "col": 0, "row": 1, "color": "#94a3b8"},
+    {"id": "intake",   "label": "Lead + Requirement\n(Claude)",      "col": 1, "row": 1, "color": "#38bdf8"},
+    {"id": "erp",      "label": "ERP Catalog\nAPI",                  "col": 2, "row": 0, "color": "#a78bfa"},
+    {"id": "rfq",      "label": "RFQ\nDispatcher",                   "col": 2, "row": 1, "color": "#f97316"},
+    {"id": "prices",   "label": "Live Price\nLookup",                "col": 2, "row": 2, "color": "#facc15"},
+    {"id": "extract",  "label": "Quote Parser\n(Claude)",           "col": 3, "row": 1, "color": "#38bdf8"},
+    {"id": "compare",  "label": "L1 + Best\nVendor",                "col": 4, "row": 1, "color": "#34d399"},
+    {"id": "quote",    "label": "Markup +\nQuotation",              "col": 5, "row": 1, "color": "#f472b6"},
+    {"id": "po",       "label": "Purchase\nOrders",                 "col": 6, "row": 0, "color": "#f97316"},
+    {"id": "match",    "label": "3-Way\nMatch",                     "col": 6, "row": 1, "color": "#fb7185"},
+    {"id": "invoice",  "label": "Customer\nInvoice",                "col": 6, "row": 2, "color": "#f472b6"}
+  ],
+  "edges": [
+    {"from": "channels", "to": "intake",  "label": "capture"},
+    {"from": "intake",   "to": "erp",     "label": "catalog"},
+    {"from": "intake",   "to": "rfq",     "label": "requirement"},
+    {"from": "rfq",      "to": "prices",  "label": "benchmark"},
+    {"from": "rfq",      "to": "extract", "label": "vendor replies"},
+    {"from": "prices",   "to": "compare", "label": "market price"},
+    {"from": "extract",  "to": "compare", "label": "normalized"},
+    {"from": "compare",  "to": "quote",   "label": "L1"},
+    {"from": "quote",    "to": "erp",     "label": "push"},
+    {"from": "quote",    "to": "po",      "label": "on accept"},
+    {"from": "po",       "to": "match",   "label": "on receipt"},
+    {"from": "match",    "to": "invoice", "label": "verified"},
+    {"from": "invoice",  "to": "erp",     "label": "push"}
+  ]
+}
